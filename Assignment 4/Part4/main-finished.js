@@ -29,13 +29,13 @@ function Ball(x, y, velX, velY, color, size, exist) {
   this.size = size;
 }
 
-
-  draw() {
-    ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-    ctx.fill();
-  }
+//balls prototype
+Ball.prototype.draw = function () {
+  ctx.beginPath();
+  ctx.fillStyle = this.color;
+  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  ctx.fill();
+};
 
   update() {
     if (this.x + this.size >= width) {

@@ -23,16 +23,12 @@ function Shape(x, y, velX, velY, exist) {
   this.velY = velY;
   this.exist = exist;
 }
+function Ball(x, y, velX, velY, color, size, exist) {
+  Shape.call(this, x, y, velX, velY, exist);
+  this.color = color;
+  this.size = size;
+}
 
-class Ball {
-  constructor(x, y, velX, velY, color, size) {
-    this.x = x;
-    this.y = y;
-    this.velX = velX;
-    this.velY = velY;
-    this.color = color;
-    this.size = size;
-  }
 
   draw() {
     ctx.beginPath();

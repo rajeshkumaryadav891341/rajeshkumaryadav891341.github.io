@@ -16,9 +16,12 @@ function random(min, max) {
 }
 
 // function to generate balls and its construction
-
-function randomRGB() {
-  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+function Shape(x, y, velX, velY, exist) {
+  this.x = x;
+  this.y = y;
+  this.velX = velX;
+  this.velY = velY;
+  this.exist = exist;
 }
 
 class Ball {

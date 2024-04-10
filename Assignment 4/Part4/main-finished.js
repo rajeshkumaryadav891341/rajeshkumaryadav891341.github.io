@@ -66,6 +66,63 @@ Ball.prototype.collision = function () {
   }
 };
 
+//Blackholes constructor
+function Blackhole(x, y, velX, velY, color, size, exist) {
+  Shape.call(this, x, y, 20, 20, exist);
+  this.color = "white";
+  this.size = 15;
+}
+//Blackhole prototypes
+Blackhole.prototype.draw = function () {
+  ctx.beginPath();
+  ctx.strokeStyle = this.color;
+  ctx.lineWidth = 3;
+  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  ctx.stroke();
+};
+Blackhole.prototype.setBound = function () {
+  if (this.x + this.size >= width) {
+    this.x -= this.size;
+  } else if (this.x - this.size <= 0) {
+    this.x += this.size;
+  } else if (this.y + this.size >= height) {
+    this.y -= this.size;
+  } else if (this.y - this.size <= 0) {
+    this.y += this.size;
+  }
+};
+Blackhole.prototype.control = function () {
+  let presskey = this;
+  window.onkeypress = function (e) {
+    if (e.key === "a") {
+      presskey.x -= presskey.velX;
+    }
+    if (e.key === "d") {
+      presskey.x += presskey.velX;
+    }
+    if (e.key === "w") {
+      presskey.y -= presskey.velY;
+    }
+    if (e.key === "s") {
+      presskey.y += presskey.velY;
+    }
+  };
+};
+Blackhole.prototype.collision = function () {
+  for (let k = 0; k < balls.length; k++) {
+    if (balls[k].exist === true) {
+      const dx = this.x - balls[k].x;
+      const dy = this.y - balls[k].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + balls[k].size) {
+        balls[k].exist = false;
+        count1++;
+        para1.textContent = "Player 1 ball count: " + count1;
+      }
+    }
+  }
+};
 
   update() {
     if (this.x + this.size >= width) {

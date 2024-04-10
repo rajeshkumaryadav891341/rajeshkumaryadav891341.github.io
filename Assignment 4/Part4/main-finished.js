@@ -36,6 +36,36 @@ Ball.prototype.draw = function () {
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.fill();
 };
+Ball.prototype.update = function () {
+  this.x += this.velX;
+  this.y += this.velY;
+  if (this.size + this.x >= width) {
+    this.velX = -this.velX;
+  } else if (this.x - this.size <= 0) {
+    this.velX = -this.velX;
+  } else if (this.size + this.y >= height) {
+    this.velY = -this.velY;
+  } else if (this.y - this.size <= 0) {
+    this.velY = -this.velY;
+  }
+};
+Ball.prototype.collision = function () {
+  for (let k = 0; k < balls.length; k++) {
+    if (!(this === balls[k])) {
+      const dx = this.x - balls[k].x;
+      const dy = this.y - balls[k].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + balls[k].size) {
+        balls[k].color = `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(
+          0,
+          255
+        )})`;
+      }
+    }
+  }
+};
+
 
   update() {
     if (this.x + this.size >= width) {

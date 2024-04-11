@@ -12,7 +12,7 @@ const height = (canvas.height = window.innerHeight);
 //generate random number
 
 function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // function to generate balls and its construction

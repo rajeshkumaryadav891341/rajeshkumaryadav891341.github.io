@@ -21,12 +21,12 @@ function result() {
   const xItem = randomValueFromArray(insertX);
   const yItem = randomValueFromArray(insertY);
   const zItem = randomValueFromArray(insertZ);
-  newStory = newStory.replace(':insertx:',xItem).replace(':insertx:',xItem).replace(':inserty:',yItem).replace(':insertz:',zItem);
-
+  newStory = newStory.replace(':insertx:',xItem).replace(':inserty:',yItem).replace(':insertz:',zItem);
 
   if (customName.value !== '') {
-    const name = customName.value;
-    newStory = newStory.replaceAll('Bob', name);
+    let name = customName.value.toLowerCase();
+    name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalize the first letter
+    newStory = newStory.replace('Bob', name);
   }
 
   if (document.getElementById("uk").checked) {
